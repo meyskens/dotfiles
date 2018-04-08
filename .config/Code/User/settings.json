@@ -1,0 +1,28 @@
+{
+    "workbench.colorTheme": "Visual Studio Light",
+    "window.zoomLevel": 0,
+    "editor.fontSize": 12,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "go.formatOnSave": true,
+    "go.useLanguageServer": false,
+    "go.addTags": {
+        "tags": "json",
+        "options": "json=omitempty",
+        "promptForTags": false,
+        "transform": "snakecase"
+    },
+    "go.coverOnSave": true,
+    "go.vetOnSave": "package",
+    "go.testTimeout": "60s",
+    "extensions.ignoreRecommendations": false,
+    "go.useCodeSnippetsOnFunctionSuggest": true,
+    "explorer.confirmDragAndDrop": false,
+    "workbench.panel.location": "bottom",
+    "explorer.confirmDelete": false,
+    "git.autofetch": true,
+    "ruby.lint": {
+        "rubocop": true,
+        "ruby": true
+    },
+}
