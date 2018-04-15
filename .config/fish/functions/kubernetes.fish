@@ -1,5 +1,6 @@
 alias k='kubectl'
 alias kd='kubectl describe'
+alias kdp='kubectl describe pods'
 alias ke='kubectl exec'
 alias kei='kubectl exec -it'
 alias kg='kubectl get'
