@@ -57,7 +57,7 @@ bindsym $mod+Shift+q kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 100 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+bindsym $mod+d exec rofi -show run -font "System San Francisco Display 18" -theme onedark
 
 
 # change focus
@@ -194,7 +194,6 @@ bar {
         } 
 
 }
-
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
@@ -213,17 +212,16 @@ bindsym XF86AudioPrev exec playerctl previous
 
 exec --no-startup-id feh --bg-fill /home/maartje/.i3/luchtbal.jpg
 exec compton 
-exec --no-startup-id xinput set-prop 11 276 -27 -27 
-exec --no-startup-id xinput set-prop 11 278 1 1
-exec --no-startup-id xinput set-prop 11 289 1
-exec --no-startup-id xinput set-prop 11 290 10, 0
+exec --no-startup-id xinput --set-prop 10 "Synaptics Scrolling Distance" -113 -113
+exec --no-startup-id xinput set-prop 10 276 -27 -27 
+exec --no-startup-id xinput set-prop 10 278 1 1
+exec --no-startup-id xinput set-prop 10 289 1
+exec --no-startup-id xinput set-prop 10 290 10, 0
 exec syndaemon -i 0.3 -K -d
-exec fluxgui
+
 exec amixer -c PCH cset 'name=Headphone Mic Boost Volume' 1
 exec --no-startup-id nm-applet
-#exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
 exec --no-startup-id aplay /home/maartje/.i3/startup.wav
-#exec overgrive
 exec --no-startup-id blueman-applet
 exec /home/maartje/.i3/browser-server
 exec pactl load-module module-switch-on-connect 
