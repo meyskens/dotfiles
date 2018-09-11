@@ -1,0 +1,17 @@
+#!/bin/bash
+xhost local:root
+docker run --rm  \
+	--net="host" \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -e DISPLAY=unix$DISPLAY \
+	-v /var/run/docker.sock:/var/run/docker.sock \
+        -v /tmp/browser.sock:/var/run/browser.sock \
+        -v "${HOME}/:/home/user/" \
+	--shm-size=2GB \
+	--cap-add SYS_PTRACE \
+	--privileged \
+	--ipc=host\
+       meyskens/vscode-maartje "$@"
+
+

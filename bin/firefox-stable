@@ -1,0 +1,28 @@
+#!/bin/bash
+xhost local:root
+#sudo chown 777 ~/.config/pulse/cookie
+
+if [ "$(docker ps -q -f name=firefox)" ]; then 
+	docker exec firefox firefox "$@" 
+	exit
+fi
+docker run --rm   \
+	--name firefox \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -e DISPLAY=unix$DISPLAY \
+	-v $HOME/Downloads:/root/Downloads \
+	-v $HOME/Pictures:/root/Pictures \
+	-v $HOME/.mozilla:/root/.mozilla \
+	-v /etc/machine-id:/etc/machine-id \
+	-e PULSE_SERVER=127.0.0.1 \
+	--security-opt seccomp=/home/maartje/.seccomp/chrome-seccomp.json \
+	--device /dev/video0 \
+	--group-add video \
+	--group-add audio \
+	--net=host \
+	--shm-size=2GB \
+	meyskens/firefox-stable "$@"
+
+
+

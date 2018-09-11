@@ -1,0 +1,21 @@
+#!/bin/bash
+xhost local:root
+chown 777 ~/.config/pulse/cookie
+docker run --rm   \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -e DISPLAY=unix$DISPLAY \
+	--net host \
+	-v $HOME/Downloads:/home/chrome/Downloads \
+	-v $HOME/.chrome/:/data \
+	--security-opt seccomp=/home/maartje/.seccomp/chrome-seccomp.json \
+	-v /etc/machine-id:/etc/machine-id \
+	-v /dev/shm:/dev/shm \
+	-v /run/user/1000/pulse/native:/run/pulse/socket \
+	-e PULSE_SERVER=unix:/run/pulse/socket \
+        -v ~/.config/pulse/cookie:/run/pulse/cookie \
+        -e PULSE_COOKIE=/run/pulse/cookie \
+        -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket \
+        meyskens/tweetdeck
+
+

@@ -1,0 +1,24 @@
+#!/bin/bash
+xhost local:root
+chown 777 ~/.config/pulse/cookie
+
+if [ "$(docker ps -q -f name=chrome)" ]; then 
+	docker exec chrome google-chrome --user-data-dir=/data "$@" 
+	exit
+fi
+docker run --rm   \
+	--name chrome \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -e DISPLAY=unix$DISPLAY \
+	--net host \
+	-v $HOME/Downloads:/home/chrome/Downloads \
+	-v $HOME/Pictures:/home/chrome/Pictures \
+	-v $HOME/.chrome/:/data \
+	--security-opt seccomp=/home/maartje/.seccomp/chrome-seccomp.json \
+	-v /etc/machine-id:/etc/machine-id \
+	-v /dev/shm:/dev/shm \
+	-e PULSE_SERVER=127.0.0.1 \
+        -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket \
+	meyskens/chrome-pulseaudio --user-data-dir=/data "$@"
+

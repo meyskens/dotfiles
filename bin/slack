@@ -1,0 +1,19 @@
+#!/bin/bash
+xhost local:root
+docker run --rm \
+	 --net=host \
+	 -v /tmp/.X11-unix:/tmp/.X11-unix \
+	 -e DISPLAY=unix$DISPLAY \
+         --device /dev/snd/ \
+	 -v /dev/shm:/dev/shm \
+	 -v $HOME:/home/user/ \
+	 -v /tmp/browser.sock:/var/run/browser.sock \
+	 --security-opt seccomp:./.seccomp/chrome-seccomp.json \
+         -v "$HOME/.config/Slack:/root/.config/Slack" \
+	 -v /var/run/dbus:/var/run/dbus \
+	 -v /var/run/user/$(id -u)/bus:/var/run/user/1000/bus \
+	 -e DBUS_SESSION_BUS_ADDRESS="unix:path=/var/run/user/1000/bus" \
+	 -v /tmp/:/tmp/ \
+         meyskens/slack
+
+
