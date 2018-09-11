@@ -14,6 +14,7 @@ sync ~/.config/Code/User/settings.json ./.config/Code/User/settings.json
 sync ~/.i3/config ./.i3/config
 sync ~/.i3/i3blocks.conf ./.i3/i3blocks.conf
 sync ~/.i3/vpn.sh ./.i3/vpn.sh
+sync ~/.fonts ./.fonts
 
 # docker scripts
 sync /usr/local/bin/ ./bin
