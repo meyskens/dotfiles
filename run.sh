@@ -16,6 +16,7 @@ sync ~/.i3/i3blocks.conf ./.i3/i3blocks.conf
 sync ~/.i3/vpn.sh ./.i3/vpn.sh
 sync ~/.fonts ./.fonts
 sync ~/.i3/battery ./.i3/battery
+sync ~/.i3/volume ./.i3/volume
 
 # docker scripts
 sync /usr/local/bin/ ./bin
