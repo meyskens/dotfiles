@@ -46,7 +46,7 @@ font pango:System San Francisco Display 10, FontAwesome
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec mate-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -57,7 +57,9 @@ bindsym $mod+Shift+q kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec rofi -show run -font "System San Francisco Display 18" -theme onedark
+
+#bindsym $mod+d exec rofi -show run -font "System San Francisco Display 18" -theme android_notification
+bindsym $mod+d exec rofi -show run  -font "System San Francisco Display 18"
 
 
 # change focus
@@ -213,10 +215,11 @@ bindsym XF86AudioPrev exec playerctl previous
 exec --no-startup-id feh --bg-fill /home/maartje/.i3/luchtbal.jpg
 exec compton 
 exec --no-startup-id xinput --set-prop 10 "Synaptics Scrolling Distance" -113 -113
-exec --no-startup-id xinput set-prop 10 276 -27 -27 
-exec --no-startup-id xinput set-prop 10 278 1 1
-exec --no-startup-id xinput set-prop 10 289 1
-exec --no-startup-id xinput set-prop 10 290 10, 0
+exec --no-startup-id xinput set-prop 11 277 -27 -27 
+exec --no-startup-id xinput set-prop 11 279 1 1
+exec --no-startup-id xinput set-prop 11 274 1
+exec --no-startup-id xinput set-prop 11 284 1
+exec --no-startup-id xinput set-prop 11 291 10, 0
 exec syndaemon -i 0.3 -K -d
 
 exec amixer -c PCH cset 'name=Headphone Mic Boost Volume' 1
@@ -225,5 +228,14 @@ exec --no-startup-id aplay /home/maartje/.i3/startup.wav
 exec --no-startup-id blueman-applet
 exec /home/maartje/.i3/browser-server
 exec pactl load-module module-switch-on-connect 
+
+# Mouse settings
+exec --no-startup-id xinput --set-prop "pointer:MX Anywhere 2S" "libinput Natural Scrolling Enabled" 1
+#exec --no-startup-id imwheel
+
+# Trackpad settings
+exec --no-startup-id xinput --set-prop "DLL075B:01 06CB:76AF Touchpad" "libinput Tapping Enabled" 1
+exec --no-startup-id xinput --set-prop "DLL075B:01 06CB:76AF Touchpad" "libinput Natural Scrolling Enabled" 1
+exec --no-startup-id xinput --set-prop "DLL075B:01 06CB:76AF Touchpad" 277 1
 
 force_xinerama yes
